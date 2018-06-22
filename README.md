@@ -158,7 +158,7 @@
 [xgpush] clientid is 331F8A86-CDF5-4C6F-BF8C-13EFB8EAD34E
 package Size is 359
 [xgpush]Current device token is c4294001507045547bfe64581eecb95f6d6a46c9cf9a9a0878233f6c0e8e3b8f
-[xgpush info]msgLen's length is 108
+[xgpush info]msgLen length is 108
 [xgpush] 服务器返回码: 0
 -[AppDelegate xgPushDidRegisteredDeviceToken:error:], result OK, error (null)
 ```
