@@ -2,7 +2,7 @@
 cd ..
 SCRIPTPATH=`pwd -P`
 SRCROOT=$SCRIPTPATH/public/XG-SDK-NAMESPACE
-DEMOSRCROOT=$SCRIPTPATH/xinge_iOS_demo
+DEMOSRCROOT=$SCRIPTPATH/xinge_iOS_RDM_Demo
 productdir=${SRCROOT}/product
 
 if [ ! -d ${productdir} ]; then
@@ -11,7 +11,7 @@ if [ ! -d ${productdir} ]; then
 else
 echo ${productdir}
 fi
-cd xinge_iOS_demo
+cd xinge_iOS_RDM_Demo
 
 rm -rf ./sdk/*
 cp -rf ${productdir}/* ./sdk/
