@@ -36,7 +36,6 @@
 		ViewController *viewCtr = (ViewController *)[(UINavigationController *)ctr topViewController];
 		[viewCtr updateNotification:[NSString stringWithFormat:@"%@%@", @"注销信鸽服务", (isSuccess?@"成功":@"失败")]];
 	}
-	
 }
 
 - (void)xgPushDidRegisteredDeviceToken:(NSString *)deviceToken error:(NSError *)error {
