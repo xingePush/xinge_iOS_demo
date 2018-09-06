@@ -30,7 +30,7 @@
         self.bestAttemptContent.title = @"标题为空";
     }
     
-    [[XGExtension defaultManager] handleNotificationRequest:request appID:2200257934 contentHandler:^(NSArray<UNNotificationAttachment *> * _Nullable attachments, NSError * _Nullable error) {
+    [[XGExtension defaultManager] handleNotificationRequest:request appID:2200262432 contentHandler:^(NSArray<UNNotificationAttachment *> * _Nullable attachments, NSError * _Nullable error) {
         self.bestAttemptContent.attachments = attachments;
         self.contentHandler(self.bestAttemptContent);
     }];
