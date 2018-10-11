@@ -36,6 +36,7 @@
 		ViewController *viewCtr = (ViewController *)[(UINavigationController *)ctr topViewController];
 		[viewCtr updateNotification:[NSString stringWithFormat:@"%@%@", @"注销信鸽服务", (isSuccess?@"成功":@"失败")]];
 	}
+	
 }
 
 - (void)xgPushDidRegisteredDeviceToken:(NSString *)deviceToken error:(NSError *)error {
@@ -63,16 +64,23 @@
 }
 
 // App 在前台弹通知需要调用这个接口
-- (void)xgPushUserNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
-    [[XGPush defaultManager] reportXGNotificationInfo:notification.request.content.userInfo];
-    completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert);
-}
+//- (void)xgPushUserNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
+//    [[XGPush defaultManager] reportXGNotificationInfo:notification.request.content.userInfo];
+//    completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert);
+//}
 #endif
-
+/**
+ 统一收到通知消息的回调
+ @param notification 消息对象
+ @param completionHandler 完成回调
+ @note SDK 3.2.0+
+ */
 - (void)xgPushDidReceiveRemoteNotification:(id)notification withCompletionHandler:(void (^)(NSUInteger))completionHandler {
     if ([notification isKindOfClass:[NSDictionary class]]) {
+        [[XGPush defaultManager] reportXGNotificationInfo:(NSDictionary *)notification];
         completionHandler(UIBackgroundFetchResultNewData);
     } else if ([notification isKindOfClass:[UNNotification class]]) {
+        [[XGPush defaultManager] reportXGNotificationInfo:((UNNotification *)notification).request.content.userInfo];
         completionHandler(UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert);
     }
 }
@@ -147,10 +155,10 @@
  @param userInfo 推送时指定的参数
  @param completionHandler 完成回调
  */
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    NSLog(@"[XGDemo] receive slient Notification");
-    NSLog(@"[XGDemo] userinfo %@", userInfo);
-    [[XGPush defaultManager] reportXGNotificationInfo:userInfo];
-    completionHandler(UIBackgroundFetchResultNewData);
-}
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+//    NSLog(@"[XGDemo] receive slient Notification");
+//    NSLog(@"[XGDemo] userinfo %@", userInfo);
+//    [[XGPush defaultManager] reportXGNotificationInfo:userInfo];
+//    completionHandler(UIBackgroundFetchResultNewData);
+//}
 @end
