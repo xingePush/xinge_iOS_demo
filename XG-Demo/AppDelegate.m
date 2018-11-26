@@ -109,7 +109,7 @@
     // 清除角标
     if ([XGPush defaultManager].xgApplicationBadgeNumber > 0) {
         [[XGPush defaultManager] setXgApplicationBadgeNumber:0];
-    }
+    } 
 	[[XGPush defaultManager] reportXGNotificationInfo:launchOptions];
 	return YES;
 }
