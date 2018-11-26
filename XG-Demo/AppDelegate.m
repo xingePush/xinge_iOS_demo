@@ -106,7 +106,6 @@
 	}
 	
 	[[XGPush defaultManager] startXGWithAppID:2200262432 appKey:@"I89WTUY132GJ" delegate:self];
-	[[XGPush defaultManager] setXgApplicationBadgeNumber:0];
 	[[XGPush defaultManager] reportXGNotificationInfo:launchOptions];
 	return YES;
 }
