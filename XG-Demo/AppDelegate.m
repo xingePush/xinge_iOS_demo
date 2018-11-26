@@ -106,6 +106,10 @@
 	}
 	
 	[[XGPush defaultManager] startXGWithAppID:2200262432 appKey:@"I89WTUY132GJ" delegate:self];
+    // 清除角标
+    if ([XGPush defaultManager].xgApplicationBadgeNumber > 0) {
+        [[XGPush defaultManager] setXgApplicationBadgeNumber:0];
+    }
 	[[XGPush defaultManager] reportXGNotificationInfo:launchOptions];
 	return YES;
 }
