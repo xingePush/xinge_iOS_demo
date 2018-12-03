@@ -44,6 +44,9 @@
 		C26B2A221FCEACED00935B03 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 689C13A21DC34D22001D8E6C /* libz.tbd */; };
 		C2735D2F1F3077EA007F4985 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C2735D2E1F3077EA007F4985 /* libsqlite3.0.tbd */; };
 		C2BE502C1FE936D500D593AA /* libXGExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2BE502B1FE936D500D593AA /* libXGExtension.a */; };
+		F012E22521B5176F000F1ACE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 689C13A41DC34D5B001D8E6C /* SystemConfiguration.framework */; };
+		F012E22621B51775000F1ACE /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 689C139E1DC34CF4001D8E6C /* CoreTelephony.framework */; };
+		F012E22721B51779000F1ACE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 689C139C1DC34CEB001D8E6C /* CFNetwork.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +130,7 @@
 		C2735D2E1F3077EA007F4985 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		C2BE50261FE934EE00D593AA /* libxgidfa.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libxgidfa.a; path = sdk/extesion/libxgidfa.a; sourceTree = "<group>"; };
 		C2BE502B1FE936D500D593AA /* libXGExtension.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libXGExtension.a; path = sdk/extesion/libXGExtension.a; sourceTree = SOURCE_ROOT; };
+		F012E22321B51748000F1ACE /* libmtasdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmtasdk.a; path = "../public/XG-SDK-NAMESPACE/MTA/libmtasdk.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +151,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F012E22721B51779000F1ACE /* CFNetwork.framework in Frameworks */,
+				F012E22621B51775000F1ACE /* CoreTelephony.framework in Frameworks */,
+				F012E22521B5176F000F1ACE /* SystemConfiguration.framework in Frameworks */,
 				C26B2A221FCEACED00935B03 /* libz.tbd in Frameworks */,
 				C26B2A211FCEACC200935B03 /* libsqlite3.tbd in Frameworks */,
 				C2BE502C1FE936D500D593AA /* libXGExtension.a in Frameworks */,
@@ -226,6 +233,7 @@
 		689C139B1DC34CEB001D8E6C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F012E22321B51748000F1ACE /* libmtasdk.a */,
 				68FAA47220720D7B00B1196D /* libXG-SDK_Simulator.a */,
 				C2BE50261FE934EE00D593AA /* libxgidfa.a */,
 				C25D80F91FDEA83300057666 /* PushKit.framework */,
