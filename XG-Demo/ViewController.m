@@ -19,11 +19,13 @@ typedef NS_ENUM(NSInteger, IDOperationType) {
 };
 
 static NSString *const cellID = @"xgdemoCellID";
-static NSString *const inputAccountTitle = @"请填写账号";
-static NSString *const inputTagTitle = @"请填写标签";
-static NSString *const inputBadgeTitle = @"请填写角标数";
 
-@interface ViewController ()<UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, XGPushTokenManagerDelegate>
+
+@interface ViewController ()<UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, XGPushTokenManagerDelegate> {
+    NSString * inputAccountTitle;
+    NSString * inputTagTitle;
+    NSString * inputBadgeTitle;
+}
 @property (weak, nonatomic) IBOutlet UITableView *APITableView;
 @property (nonatomic, strong) UIAlertController *alertCtr;
 @property (strong, nonatomic) NSArray *apiLists;
@@ -35,14 +37,20 @@ static NSString *const inputBadgeTitle = @"请填写角标数";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    inputAccountTitle = NSLocalizedString(@"account_title", nil);
+    inputTagTitle = NSLocalizedString(@"tag_title", nil);
+    inputBadgeTitle = NSLocalizedString(@"badge_title", nil);
+    
+    
     if (!self.alertCtr) {
         self.alertCtr = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertAction *action = [UIAlertAction actionWithTitle:NSLocalizedString(@"ok", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         }];
         [self.alertCtr addAction:action];
     }
-    self.apiKindLists = @[@"账号", @"标签", @"设备"];
-    self.apiLists = @[@[@"绑定账号", @"解绑账号", @"更新账号", @"清除全部账号"], @[@"绑定标签", @"解绑标签", @"更新标签",@"清除全部标签"], @[@"注册设备", @"注销设备", @"设备Token", @"设置角标"]];
+    self.apiKindLists = @[NSLocalizedString(@"account_section", nil), NSLocalizedString(@"tag_section", nil), NSLocalizedString(@"app_section", nil)];
+    self.apiLists = @[@[NSLocalizedString(@"bind_account", nil), NSLocalizedString(@"unbind_account", nil), NSLocalizedString(@"update_account", nil), NSLocalizedString(@"clear_account", nil)], @[NSLocalizedString(@"bind_tag", nil), NSLocalizedString(@"unbind_tag", nil), NSLocalizedString(@"update_tag", nil),NSLocalizedString(@"clear_tag", nil)], @[NSLocalizedString(@"register_app", nil), NSLocalizedString(@"unregister_app", nil), NSLocalizedString(@"device_token", nil), NSLocalizedString(@"set_badge", nil)]];
     [self.APITableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellID];
     self.APITableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectZero];
     self.APITableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -92,7 +100,7 @@ static NSString *const inputBadgeTitle = @"请填写角标数";
             if (self.operationType == Clear) {
                 [[XGPushTokenManager defaultTokenManager] clearAllIdentifiers:XGPushTokenBindTypeAccount];
             } else {
-                UIAlertView *inputAccountView = [[UIAlertView alloc] initWithTitle:inputAccountTitle message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                UIAlertView *inputAccountView = [[UIAlertView alloc] initWithTitle:inputAccountTitle message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) otherButtonTitles:NSLocalizedString(@"ok", nil), nil];
                 inputAccountView.alertViewStyle = UIAlertViewStylePlainTextInput;
                 [inputAccountView show];
             }
@@ -106,7 +114,7 @@ static NSString *const inputBadgeTitle = @"请填写角标数";
             if (self.operationType == Clear) {
                 [[XGPushTokenManager defaultTokenManager] clearAllIdentifiers:XGPushTokenBindTypeTag];
             } else {
-                UIAlertView *inputTagView = [[UIAlertView alloc] initWithTitle:inputTagTitle message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                UIAlertView *inputTagView = [[UIAlertView alloc] initWithTitle:inputTagTitle message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) otherButtonTitles:NSLocalizedString(@"ok", nil), nil];
                 inputTagView.alertViewStyle = UIAlertViewStylePlainTextInput;
                 [inputTagView show];
             }
@@ -124,7 +132,7 @@ static NSString *const inputBadgeTitle = @"请填写角标数";
             } else if (indexPath.row == 2) {
                 [self onGetDeviceToken:nil];
             } else if (indexPath.row == 3) {
-                UIAlertView *inputBadgeView = [[UIAlertView alloc] initWithTitle:inputBadgeTitle message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                UIAlertView *inputBadgeView = [[UIAlertView alloc] initWithTitle:inputBadgeTitle message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", nil) otherButtonTitles:NSLocalizedString(@"ok", nil), nil];
                 inputBadgeView.alertViewStyle = UIAlertViewStylePlainTextInput;
                 [inputBadgeView show];
             }
@@ -153,32 +161,33 @@ static NSString *const inputBadgeTitle = @"请填写角标数";
             
         } else if ([alertView.title isEqualToString:inputTagTitle]) {
             if (self.operationType == Add) {
-//                [[XGPushTokenManager defaultTokenManager] bindWithIdentifiers:@[identifier, [NSString stringWithFormat:@"%@%@", identifier, @"_test"]] type:XGPushTokenBindTypeTag];
+                //                [[XGPushTokenManager defaultTokenManager] bindWithIdentifiers:@[identifier, [NSString stringWithFormat:@"%@%@", identifier, @"_test"]] type:XGPushTokenBindTypeTag];
                 [[XGPushTokenManager defaultTokenManager] bindWithIdentifier:identifier type:XGPushTokenBindTypeTag];
             } else if (self.operationType == Delete) {
-//                [[XGPushTokenManager defaultTokenManager] unbindWithIdentifers:@[identifier, [NSString stringWithFormat:@"%@%@", identifier, @"_test"]] type:XGPushTokenBindTypeTag];
+                //                [[XGPushTokenManager defaultTokenManager] unbindWithIdentifers:@[identifier, [NSString stringWithFormat:@"%@%@", identifier, @"_test"]] type:XGPushTokenBindTypeTag];
                 [[XGPushTokenManager defaultTokenManager] unbindWithIdentifer:identifier type:XGPushTokenBindTypeTag];
             } else if (self.operationType == Update) {
-                [[XGPushTokenManager defaultTokenManager] updateBindedIdentifiers:@[identifier, [NSString stringWithFormat:@"%@%@", identifier, @"_test"]] bindType:XGPushTokenBindTypeTag];
+                //                [[XGPushTokenManager defaultTokenManager] updateBindedIdentifiers:@[identifier, [NSString stringWithFormat:@"%@%@", identifier, @"_test"]] bindType:XGPushTokenBindTypeTag];
+                [[XGPushTokenManager defaultTokenManager] updateBindedIdentifiers:@[identifier] bindType:XGPushTokenBindTypeTag];
             }
         } else if ([alertView.title isEqualToString:inputBadgeTitle]) {
             [[XGPush defaultManager] setBadge:[identifier integerValue]];
         }
-
+        
     }
 }
 
 - (void)onGetDeviceToken:(id)sender {
     NSString *token = [[XGPushTokenManager defaultTokenManager] deviceTokenString];
     if (!token || token.length == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"无法获取token" message:token delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"token_error", nil) message:token delegate:self cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil, nil];
         [alert show];
         return;
     }
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = token;
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"当前的deviceToken(已复制到剪切板)" message:token delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"token_info", nil) message:token delegate:self cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil, nil];
     [alert show];
     
 }
@@ -188,36 +197,44 @@ static NSString *const inputBadgeTitle = @"请填写角标数";
 }
 
 - (void) updateNotification:(NSString *)str {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:str delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:str delegate:nil cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil, nil];
     [alert show];
 }
 
 #pragma mark - XGPushTokenManagerDelegate
 - (void)xgPushDidBindWithIdentifier:(NSString *)identifier type:(XGPushTokenBindType)type error:(NSError *)error {
-    [self.alertCtr setMessage:[NSString stringWithFormat:@"绑定%@%@%@", ((type == XGPushTokenBindTypeAccount)?@"账号":@"标签"), ((error == nil)?@"成功":@"失败"), identifier]];
+    [self.alertCtr setMessage:[NSString stringWithFormat:@"%@%@", ((type == XGPushTokenBindTypeAccount)?NSLocalizedString(@"bind_account", nil):NSLocalizedString(@"bind_tag", nil)), ((error == nil)?NSLocalizedString(@"success", nil):NSLocalizedString(@"failed", nil))]];
     [self presentViewController:self.alertCtr animated:YES completion:nil];
     NSLog(@"%s, id is %@, error %@", __FUNCTION__, identifier, error);
 }
 
 - (void)xgPushDidUnbindWithIdentifier:(NSString *)identifier type:(XGPushTokenBindType)type error:(NSError *)error {
-    [self.alertCtr setMessage:[NSString stringWithFormat:@"解绑%@%@%@", ((type == XGPushTokenBindTypeAccount)?@"账号":@"标签"), ((error == nil)?@"成功":@"失败"), identifier]];
+    [self.alertCtr setMessage:[NSString stringWithFormat:@"%@%@", ((type == XGPushTokenBindTypeAccount)?NSLocalizedString(@"unbind_account", nil):NSLocalizedString(@"unbind_tag", nil)), ((error == nil)?NSLocalizedString(@"success", nil):NSLocalizedString(@"failed", nil))]];
     [self presentViewController:self.alertCtr animated:YES completion:nil];
     NSLog(@"%s, id is %@, error %@", __FUNCTION__, identifier, error);
 }
 
 - (void)xgPushDidBindWithIdentifiers:(NSArray<NSString *> *)identifiers type:(XGPushTokenBindType)type error:(NSError *)error {
+    [self.alertCtr setMessage:[NSString stringWithFormat:@"%@%@", ((type == XGPushTokenBindTypeAccount)?NSLocalizedString(@"bind_account", nil):NSLocalizedString(@"bind_tag", nil)), ((error == nil)?NSLocalizedString(@"success", nil):NSLocalizedString(@"failed", nil))]];
+    [self presentViewController:self.alertCtr animated:YES completion:nil];
     NSLog(@"%s, id is %@, error %@", __FUNCTION__, identifiers, error);
 }
 
 - (void)xgPushDidUnbindWithIdentifiers:(NSArray<NSString *> *)identifiers type:(XGPushTokenBindType)type error:(NSError *)error {
+    [self.alertCtr setMessage:[NSString stringWithFormat:@"%@%@", ((type == XGPushTokenBindTypeAccount)?NSLocalizedString(@"unbind_account", nil):NSLocalizedString(@"unbind_tag", nil)), ((error == nil)?NSLocalizedString(@"success", nil):NSLocalizedString(@"failed", nil))]];
+    [self presentViewController:self.alertCtr animated:YES completion:nil];
     NSLog(@"%s, id is %@, error %@", __FUNCTION__, identifiers, error);
 }
 
 - (void)xgPushDidUpdatedBindedIdentifiers:(NSArray<NSString *> *)identifiers bindType:(XGPushTokenBindType)type error:(NSError *)error {
+    [self.alertCtr setMessage:[NSString stringWithFormat:@"%@%@", ((type == XGPushTokenBindTypeAccount)?NSLocalizedString(@"update_account", nil):NSLocalizedString(@"update_tag", nil)), ((error == nil)?NSLocalizedString(@"success", nil):NSLocalizedString(@"failed", nil))]];
+    [self presentViewController:self.alertCtr animated:YES completion:nil];
     NSLog(@"%s, id is %@, error %@", __FUNCTION__, identifiers, error);
 }
 
 - (void)xgPushDidClearAllIdentifiers:(XGPushTokenBindType)type error:(NSError *)error {
+    [self.alertCtr setMessage:[NSString stringWithFormat:@"%@%@", ((type == XGPushTokenBindTypeAccount)?NSLocalizedString(@"clear_account", nil):NSLocalizedString(@"clear_tag", nil)), ((error == nil)?NSLocalizedString(@"success", nil):NSLocalizedString(@"failed", nil))]];
+    [self presentViewController:self.alertCtr animated:YES completion:nil];
     NSLog(@"%s, type is %lu, error %@", __FUNCTION__, (unsigned long)type, error);
 }
 

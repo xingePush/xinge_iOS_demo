@@ -40,6 +40,7 @@
 		C24A71141F3AB75D007F2360 /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24A71131F3AB75D007F2360 /* NotificationViewController.m */; };
 		C24A71171F3AB75D007F2360 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C24A71151F3AB75D007F2360 /* MainInterface.storyboard */; };
 		C24A711B1F3AB75D007F2360 /* XGContent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C24A710D1F3AB75D007F2360 /* XGContent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C25D4F8421BE5E9B0095D497 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C25D4F8621BE5E9B0095D497 /* Localizable.strings */; };
 		C26B2A211FCEACC200935B03 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C26B2A201FCEACC200935B03 /* libsqlite3.tbd */; };
 		C26B2A221FCEACED00935B03 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 689C13A21DC34D22001D8E6C /* libz.tbd */; };
 		C2735D2F1F3077EA007F4985 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C2735D2E1F3077EA007F4985 /* libsqlite3.0.tbd */; };
@@ -124,6 +125,8 @@
 		C24A71131F3AB75D007F2360 /* NotificationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationViewController.m; sourceTree = "<group>"; };
 		C24A71161F3AB75D007F2360 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		C24A71181F3AB75D007F2360 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C25D4F8521BE5E9B0095D497 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		C25D4F8721BE5E9D0095D497 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C25D80F91FDEA83300057666 /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = System/Library/Frameworks/PushKit.framework; sourceTree = SDKROOT; };
 		C26B2A1E1FCEA8FC00935B03 /* XGExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XGExtension.h; sourceTree = "<group>"; };
 		C26B2A201FCEACC200935B03 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -217,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				689C137C1DC34C26001D8E6C /* main.m */,
+				C25D4F8621BE5E9B0095D497 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -355,8 +359,9 @@
 		689C13701DC34C26001D8E6C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = XG;
 				LastUpgradeCheck = 0810;
-				ORGANIZATIONNAME = tyzual;
+				ORGANIZATIONNAME = "XG of Tencent";
 				TargetAttributes = {
 					689C13771DC34C26001D8E6C = {
 						CreatedOnToolsVersion = 8.1;
@@ -395,6 +400,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 689C136F1DC34C26001D8E6C;
 			productRefGroup = 689C13791DC34C26001D8E6C /* Products */;
@@ -415,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				689C138B1DC34C27001D8E6C /* LaunchScreen.storyboard in Resources */,
+				C25D4F8421BE5E9B0095D497 /* Localizable.strings in Resources */,
 				689C13881DC34C27001D8E6C /* Assets.xcassets in Resources */,
 				689C13861DC34C27001D8E6C /* Main.storyboard in Resources */,
 			);
@@ -525,6 +532,15 @@
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
+		C25D4F8621BE5E9B0095D497 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C25D4F8521BE5E9B0095D497 /* zh-Hans */,
+				C25D4F8721BE5E9D0095D497 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -532,6 +548,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -580,6 +597,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -690,6 +708,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

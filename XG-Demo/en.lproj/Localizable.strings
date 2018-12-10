@@ -1,0 +1,41 @@
+/* 
+  Localizable.strings
+  XG-Demo
+
+  Created by uwei on 2018/12/10.
+  Copyright © 2018 XG of Tencent. All rights reserved.
+*/
+
+// tip
+"cancel" = "Cancel";
+"ok" = "OK";
+"account_title" = "Please input an account";
+"tag_title" = "Please input a tag";
+"badge_title" = "Please input a badge number";
+"success" = " successfully";
+"failed" = " failed";
+"token_error" = "Can not get the device token";
+"token_info" = "Current device token is copied to the clipboard";
+
+//  account Section
+"account_section" = "About the account";
+"bind_account" = "Bind an account";
+"unbind_account" = "Unbind an account";
+"update_account" = "Update the accounts";
+"clear_account" = "Clear all accounts";
+
+// tag section
+"tag_section" = "About the tag";
+"bind_tag" = "Bind a tag";
+"unbind_tag" = "Unbind a tag";
+"update_tag" = "Update the tags";
+"clear_tag" = "Clear all tags";
+
+// Device section
+"app_section" = "About the device";
+"register_app" = "Register this application to XG server";
+"unregister_app" = "Unregister this application to XG server";
+"device_token" = "Device Token";
+"set_badge" = "Set a badge number for App to XG Server";
+
+

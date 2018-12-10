@@ -22,25 +22,25 @@
 
 #pragma mark - XGPushDelegate
 - (void)xgPushDidFinishStart:(BOOL)isSuccess error:(NSError *)error {
-	NSLog(@"%s, result %@, error %@", __FUNCTION__, isSuccess?@"OK":@"NO", error);
-	UIViewController *ctr = [self.window rootViewController];
-	if ([ctr isKindOfClass:[UINavigationController class]]) {
-		ViewController *viewCtr = (ViewController *)[(UINavigationController *)ctr topViewController];
-		[viewCtr updateNotification:[NSString stringWithFormat:@"%@%@", @"启动信鸽服务", (isSuccess?@"成功":@"失败")]];
-	}
+    NSLog(@"%s, result %@, error %@", __FUNCTION__, isSuccess?@"OK":@"NO", error);
+    UIViewController *ctr = [self.window rootViewController];
+    if ([ctr isKindOfClass:[UINavigationController class]]) {
+        ViewController *viewCtr = (ViewController *)[(UINavigationController *)ctr topViewController];
+        [viewCtr updateNotification:[NSString stringWithFormat:@"%@%@", NSLocalizedString(@"register_app", nil), (isSuccess?NSLocalizedString(@"success", nil):NSLocalizedString(@"failed", nil))]];
+    }
 }
 
 - (void)xgPushDidFinishStop:(BOOL)isSuccess error:(NSError *)error {
-	UIViewController *ctr = [self.window rootViewController];
-	if ([ctr isKindOfClass:[UINavigationController class]]) {
-		ViewController *viewCtr = (ViewController *)[(UINavigationController *)ctr topViewController];
-		[viewCtr updateNotification:[NSString stringWithFormat:@"%@%@", @"注销信鸽服务", (isSuccess?@"成功":@"失败")]];
-	}
-	
+    UIViewController *ctr = [self.window rootViewController];
+    if ([ctr isKindOfClass:[UINavigationController class]]) {
+        ViewController *viewCtr = (ViewController *)[(UINavigationController *)ctr topViewController];
+        [viewCtr updateNotification:[NSString stringWithFormat:@"%@%@", NSLocalizedString(@"unregister_app", nil), (isSuccess?NSLocalizedString(@"success", nil):NSLocalizedString(@"failed", nil))]];
+    }
+    
 }
 
 - (void)xgPushDidRegisteredDeviceToken:(NSString *)deviceToken error:(NSError *)error {
-	NSLog(@"%s, result %@, error %@", __FUNCTION__, error?@"NO":@"OK", error);
+    NSLog(@"%s, result %@, error %@", __FUNCTION__, error?@"NO":@"OK", error);
 }
 
 // iOS 10 新增 API
@@ -92,54 +92,54 @@
 
 #pragma mark - UIApplicationDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-	
-	[[XGPush defaultManager] setEnableDebug:YES];
-	XGNotificationAction *action1 = [XGNotificationAction actionWithIdentifier:@"xgaction001" title:@"xgAction1" options:XGNotificationActionOptionNone];
-	XGNotificationAction *action2 = [XGNotificationAction actionWithIdentifier:@"xgaction002" title:@"xgAction2" options:XGNotificationActionOptionDestructive];
-	if (action1 && action2) {
-		XGNotificationCategory *category = [XGNotificationCategory categoryWithIdentifier:@"xgCategory" actions:@[action1, action2] intentIdentifiers:@[] options:XGNotificationCategoryOptionNone];
-
-		XGNotificationConfigure *configure = [XGNotificationConfigure configureNotificationWithCategories:[NSSet setWithObject:category] types:XGUserNotificationTypeAlert|XGUserNotificationTypeBadge|XGUserNotificationTypeSound];
-		if (configure) {
-			[[XGPush defaultManager] setNotificationConfigure:configure];
-		}
-	}
-	
+    
+    [[XGPush defaultManager] setEnableDebug:YES];
+    XGNotificationAction *action1 = [XGNotificationAction actionWithIdentifier:@"xgaction001" title:@"xgAction1" options:XGNotificationActionOptionNone];
+    XGNotificationAction *action2 = [XGNotificationAction actionWithIdentifier:@"xgaction002" title:@"xgAction2" options:XGNotificationActionOptionDestructive];
+    if (action1 && action2) {
+        XGNotificationCategory *category = [XGNotificationCategory categoryWithIdentifier:@"xgCategory" actions:@[action1, action2] intentIdentifiers:@[] options:XGNotificationCategoryOptionNone];
+        
+        XGNotificationConfigure *configure = [XGNotificationConfigure configureNotificationWithCategories:[NSSet setWithObject:category] types:XGUserNotificationTypeAlert|XGUserNotificationTypeBadge|XGUserNotificationTypeSound];
+        if (configure) {
+            [[XGPush defaultManager] setNotificationConfigure:configure];
+        }
+    }
+    
     //[XGPushStat setIDFA:@"testidfa"];
-	[[XGPush defaultManager] startXGWithAppID:2200262432 appKey:@"I89WTUY132GJ" delegate:self];
+    [[XGPush defaultManager] startXGWithAppID:2200262432 appKey:@"I89WTUY132GJ" delegate:self];
     // 清除角标
     if ([XGPush defaultManager].xgApplicationBadgeNumber > 0) {
         [[XGPush defaultManager] setXgApplicationBadgeNumber:0];
     } 
-	[[XGPush defaultManager] reportXGNotificationInfo:launchOptions];
-	return YES;
+    [[XGPush defaultManager] reportXGNotificationInfo:launchOptions];
+    return YES;
 }
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-	// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-	// Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+    // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
 }
 
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-	// Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-	// If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-	// Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+    // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
 }
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-	// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-	// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
 // 此方法不再需要实现；
@@ -148,8 +148,8 @@
 //}
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-	NSLog(@"[XGDemo] register APNS fail.\n[XGDemo] reason : %@", error);
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"registerDeviceFailed" object:nil];
+    NSLog(@"[XGDemo] register APNS fail.\n[XGDemo] reason : %@", error);
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"registerDeviceFailed" object:nil];
 }
 
 /**

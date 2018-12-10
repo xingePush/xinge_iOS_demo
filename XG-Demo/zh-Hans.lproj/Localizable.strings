@@ -1,0 +1,39 @@
+/* 
+  Localizable.strings
+  XG-Demo
+
+  Created by uwei on 2018/12/10.
+  Copyright © 2018 XG of Tencent. All rights reserved.
+*/
+
+// tip
+"cancel" = "取消";
+"ok" = "好的";
+"account_title" = "请输入一个账号";
+"tag_title" = "请输入一个标签";
+"badge_title" = "请输入一个角标数字";
+"success" = "成功";
+"failed" = "失败";
+"token_error" = "无法获取设备推送标识(DeviceToken)";
+"token_info" = "当前应用的推送标识(DeviceToken)(已复制到剪切板)";
+
+//  account Section
+"account_section" = "关于账号接口";
+"bind_account" = "绑定一个账号";
+"unbind_account" = "解绑一个账号";
+"update_account" = "更新账号";
+"clear_account" = "清除全部账号";
+
+// tag section
+"tag_section" = "关于标签接口";
+"bind_tag" = "绑定一个标签";
+"unbind_tag" = "解绑一个标签";
+"update_tag" = "更新标签";
+"clear_tag" = "清除所有标签";
+
+// Device section
+"app_section" = "关于应用接口";
+"register_app" = "注册推送服务";
+"unregister_app" = "注销推送服务";
+"device_token" = "设备推送标识";
+"set_badge" = "上报当前应用角标数";
