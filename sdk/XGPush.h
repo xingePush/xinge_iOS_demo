@@ -365,8 +365,6 @@ typedef NS_ENUM(NSUInteger, XGPushTokenBindType) {
 
 @end
 
-
-
 /**
  @brief 监控信鸽服务启动和设备token注册的一组方法
  */

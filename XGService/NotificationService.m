@@ -34,6 +34,9 @@
         self.bestAttemptContent.attachments = attachments;
         self.contentHandler(self.bestAttemptContent);
     }];
+    [[XGExtension defaultManager] reportXGNotificationRequest:request appID:2200262432 completionHandler:^(BOOL result, NSInteger responseCode) {
+        NSLog(@"result code is %ld", (long)responseCode);
+    }];
 }
 
 - (void)serviceExtensionTimeWillExpire {

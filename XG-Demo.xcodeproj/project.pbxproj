@@ -799,6 +799,7 @@
 					"$(PROJECT_DIR)/sdk/extesion",
 				);
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.teg.XGDemo.XGService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4fa06929-99da-4177-a0bf-6d3b982be84a";
@@ -824,6 +825,7 @@
 					"$(PROJECT_DIR)/sdk/extesion",
 				);
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.teg.XGDemo.XGService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4fa06929-99da-4177-a0bf-6d3b982be84a";
@@ -849,6 +851,7 @@
 					"$(PROJECT_DIR)/sdk/extesion",
 				);
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tencent.teg.XGDemo.XGService;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4fa06929-99da-4177-a0bf-6d3b982be84a";

@@ -24,7 +24,7 @@ __IOS_AVAILABLE(10.0)
  
  @param request 推送请求
  @param appID 信鸽应用ID
- @param handler 处理消息的回调，回调方法中处理关联的富媒体文件(暂不可用)
+ @param handler 处理消息的回调，回调方法中处理关联的富媒体文件
  */
 - (void)handleNotificationRequest:(nonnull UNNotificationRequest *)request appID:(uint32_t)appID contentHandler:(nullable void(^)( NSArray <UNNotificationAttachment *>* _Nullable attachments,  NSError * _Nullable error))handler;
 
@@ -35,7 +35,7 @@ __IOS_AVAILABLE(10.0)
  @param request 推送请求
  @param key 包含有富媒体文件的字段
  @param appID 信鸽应用ID
- @param handler 处理消息的回调，回调方法中处理关联的富媒体文件(暂不可用)
+ @param handler 处理消息的回调，回调方法中处理关联的富媒体文件
  */
 - (void)handleNotificationRequest:(nonnull UNNotificationRequest *)request attachmentKey:(nonnull NSString *)key appID:(uint32_t)appID contentHandler:(nullable void(^)( NSArray <UNNotificationAttachment *>* _Nullable attachments,  NSError * _Nullable error))handler;
 
@@ -49,6 +49,13 @@ __IOS_AVAILABLE(10.0)
 - (void)startDownloadAttachmentFromURL:(nonnull NSString *)url completionHandler:(nullable void(^)(UNNotificationAttachment *_Nullable attachment,  NSError *_Nullable error))completionHandler;
 
 
+/**
+ 上报回执消息，统计消息抵达终端的数量
 
+ @param request 推送请求
+ @param appID 信鸽应用ID
+ @param handler 处理消息的回调
+ */
+- (void)reportXGNotificationRequest:(nonnull UNNotificationRequest *)request appID:(uint32_t)appID completionHandler:(nullable void (^)(BOOL result, NSInteger responseCode))handler;
 
 @end
