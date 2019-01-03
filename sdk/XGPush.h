@@ -354,16 +354,6 @@ typedef NS_ENUM(NSUInteger, XGPushTokenBindType) {
 
 @end
 
-//信鸽统计相关
-@interface XGPushStat : NSObject
-
-/**
- @brief 传递设备的idfa给信鸽,可以得到更多指标统计
- @param idfa 苹果的idfa(广告标识符)
- */
-+ (void)setIDFA:(nonnull NSString *)idfa;
-
-@end
 
 /**
  @brief 监控信鸽服务启动和设备token注册的一组方法
@@ -371,12 +361,7 @@ typedef NS_ENUM(NSUInteger, XGPushTokenBindType) {
 @protocol XGPushDelegate <NSObject>
 
 @optional
-/**
- @brief 统一消息出口，此接口对不同 iOS 版本的消息接口进行了封装
 
- @param notification 通知内容，需要根据返回类型来确定
- @param completionHandler 接收到消息的回调，必须要调用
- */
 - (void)xgPushDidReceiveRemoteNotification:(nonnull id)notification withCompletionHandler:(nullable void (^)(NSUInteger))completionHandler;
 
 
