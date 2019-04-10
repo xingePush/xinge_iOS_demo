@@ -156,7 +156,7 @@ static NSString *const cellID = @"xgdemoCellID";
             } else if (self.operationType == Delete) {
                 [[XGPushTokenManager defaultTokenManager] unbindWithIdentifer:identifier type:XGPushTokenBindTypeAccount];
             } else if (self.operationType == Update) {
-                [[XGPushTokenManager defaultTokenManager] updateBindedIdentifiers:@[identifier] bindType:XGPushTokenBindTypeAccount];
+                [[XGPushTokenManager defaultTokenManager] updateBindedIdentifiers:@[@{identifier:@(0)}] bindType:XGPushTokenBindTypeAccount];
             }
             
         } else if ([alertView.title isEqualToString:inputTagTitle]) {
@@ -189,6 +189,8 @@ static NSString *const cellID = @"xgdemoCellID";
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"token_info", nil) message:token delegate:self cancelButtonTitle:NSLocalizedString(@"ok", nil) otherButtonTitles:nil, nil];
     [alert show];
+    
+    [[XGPushTokenManager defaultTokenManager] unbindWithIdentifers:@[@{@"123":@(0)}] type:XGPushTokenBindTypeAccount];
     
 }
 
